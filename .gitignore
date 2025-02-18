@@ -1,0 +1,91 @@
+# ---- C# .NET Core ----
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.psess
+*.sln.cache
+*.ncb
+*.opendb
+
+# Build output
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.pdb
+*.log
+*.cache
+*.csproj.user
+*.appx
+*.appxbundle
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.assets.json
+
+# Entity Framework migrations
+Migrations/
+
+# ASP.NET Core
+appsettings*.json
+secret.json
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.override.yml
+
+# ---- React App ----
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# Build output
+dist/
+dist-ssr/
+build/
+coverage/
+
+# Vite
+.vite/
+*.env.local
+*.env.development
+*.env.production
+
+# Logs
+logs/
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs / Editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# NPM / Yarn / PNPM Lock Files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Git conflicts
+*.orig
+
+#Other
+*.bak
