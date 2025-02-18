@@ -66,6 +66,7 @@ coverage/
 *.env.local
 *.env.development
 *.env.production
+*vite-env.d*
 
 # Logs
 logs/
@@ -78,11 +79,6 @@ yarn-error.log*
 Thumbs.db
 *.swp
 *.swo
-
-# NPM / Yarn / PNPM Lock Files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Git conflicts
 *.orig
