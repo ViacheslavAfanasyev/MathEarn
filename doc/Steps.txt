@@ -1,0 +1,97 @@
+.Net 8, Node 22
+
+1. Create .Net 8 webapi project and install base dependencies:
+dotnet new webapi -n MathEarn.API --framework net8.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.IdentityModel.Tokens
+dotnet add package Swashbuckle.AspNetCore
+
+2. Create react vite, install base dependencies, confiugre chakra-ui, aliases, ESLint, Prettier
+
+npm create vite@latest math-earn --template react
+npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion react-router-dom axios
+
+Chakra setup: https://www.chakra-ui.com/docs/get-started/installation
+
+npx @chakra-ui/cli snippet add
+
+main.tsx:
+import { Provider } from "@/components/ui/provider"
+
+<Provider>
+	<App />
+</Provider>
+	
+Alias
+vite.config.json
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+    },
+  },
+  plugins: [react()],
+});
+
+or
+import tsconfigPaths from "vite-tsconfig-paths"
+
+export default defineConfig({
+  plugins: [react(), tsconfigPaths()],
+})
+
+tsconfig.json\tsconfig.app.json add the paths and baseUrl inside compilerOptions node:
+
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"]
+    },
+	
+	
+ESLint, Prettier
+
+npm install --save-dev prettier eslint eslint-config-prettier eslint-plugin-prettier
+
+Create a .prettierrc file in the root of your project:
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2
+}
+
+If you don’t have an .eslintrc.js file, create one and add:
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
+  rules: {
+    'prettier/prettier': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn'
+  }
+};
+
+Enable Auto-Formatting in VS Code
+Open settings.json (Ctrl + Shift + P → "Preferences: Open Settings (JSON)").
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+
+Add Formatting Scripts
+"scripts": {
+  "lint": "eslint src/**/*.{js,ts,tsx}",
+  "format": "prettier --write 'src/**/*.{js,ts,tsx}'"
+}
+
+----------------------------------------------------------------
