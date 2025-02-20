@@ -109,3 +109,29 @@ cd MathEarn.API
 # Apply migrations and create database tables
  dotnet ef database update
 
+--------------------------------------------------------------------
+Install authentication-related packages
+ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+ dotnet add package System.IdentityModel.Tokens.Jwt
+ dotnet add package BCrypt.Net-Next
+
+Update appsettings.json for JWT Configuration
+
+  "JwtSettings": {
+    "Secret": "SOME_VALUE",
+    "Issuer": "MathEarnProject",
+    "Audience": "MathEarnUsers",
+    "ExpirationInMinutes": 60
+  }
+
+Create AuthService that contains method string GenerateJwtToken(User user), HashPassword, VerifyPassword
+Create AuthController with Register and Login methods
+
+Register Authentication in Program.cs
+
+Test
+curl -X POST http://localhost:5069/api/auth/register -H "Content-Type: application/json" -d '{"email":"test@example.com","passwordHash":"password123","role":"Parent"}'
+
+curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/json" -d '{"email":"test@example.com","passwordHash":"password123"}'
+
+-------------------------------------------------------------------

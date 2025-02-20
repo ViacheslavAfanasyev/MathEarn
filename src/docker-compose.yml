@@ -19,11 +19,15 @@ services:
     build: ./MathEarn.API
     container_name: mathearn-backend
     ports:
-      - "5000:5000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     environment:
-      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:${BACKEND_PORT}
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Server=db;Database=${MATH_EARN_DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD};
+      - ConnectionStrings__DefaultConnection=Server=db;Database=${MATH_EARN_DB_NAME};User Id=${DB_USER};Password=${DB_PASSWORD}
+      - JwtSettings__Secret=${JWT_SECRET}
+      - JwtSettings__Issuer=${JWT_ISSUER}
+      - JwtSettings__Audience=${JWT_AUDIENCE}
+      - JwtSettings__ExpirationInMinutes=${JWT_EXPIRATIONINMUNITES}
     depends_on:
       db:
         condition: service_healthy
