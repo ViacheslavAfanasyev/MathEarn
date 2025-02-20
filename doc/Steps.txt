@@ -95,3 +95,17 @@ Add Formatting Scripts
 }
 
 ----------------------------------------------------------------
+docker-compose --env-file .env.development up -d --build
+
+Create model classes
+
+Install Microsoft.EntityFrameworkCore.Design (needed for migration)
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+# Generate EF Core migrations
+cd MathEarn.API
+ dotnet ef migrations add InitialCreate
+
+# Apply migrations and create database tables
+ dotnet ef database update
+

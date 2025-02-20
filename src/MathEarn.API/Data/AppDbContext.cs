@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MathEarn.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MathEarn.API.Data
 {
@@ -6,9 +7,9 @@ namespace MathEarn.API.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        //public DbSet<User> Users { get; set; }
-        //public DbSet<MathProblem> MathProblems { get; set; }
-        //public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<MathProblem> MathProblems { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
